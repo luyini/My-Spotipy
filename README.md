@@ -27,6 +27,7 @@ pip3 install spotipy==2.4.4
 version of spotipy, in the older version, some functions are not working properly.
 
 
+Other packages installation
 pip install -r requirements.txt
 # or
 pip3 install -r requirements.txt
