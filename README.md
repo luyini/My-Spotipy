@@ -43,6 +43,6 @@ Run the app:
 ```sh
 python3 spotifyxxx.py user_id
 
-Important Note: When you run the application, there would be a pop up window ask you for perimission to 
+Important Note: When you enter the command line above, there would be a pop up window ask you for perimission to 
 access your spotify account, after you click "Okay", copy the redirect url at the top of you browser and paste it 
 to your command line in order to properly start the application.
