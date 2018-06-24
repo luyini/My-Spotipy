@@ -17,16 +17,17 @@ This repo uses the "dotenv" approach, but feel free to use whatever approach wor
 ## Installation
 
 Install package dependencies:
+
+Latest version Spotipy installation
 ```
-###Latest version Spotipy installation
 pip install spotipy==2.4.4
 # or 
 pip3 install spotipy==2.4.4
 # note: you have to install spotipy using this spacific command, otherwise you would install an older 
 version of spotipy, in the older version, some functions are not working properly.
-
-
-###Other packages installation
+```
+Other packages installation
+```
 pip install -r requirements.txt
 # or
 pip3 install -r requirements.txt
