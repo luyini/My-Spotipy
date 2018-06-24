@@ -10,8 +10,8 @@ from json.decoder import JSONDecodeError
 
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
-print("CLIENT ID:", os.environ.get("SPOTIPY_CLIENT_ID"))
-print("CLIENT SECRET:", os.environ.get("SPOTIPY_CLIENT_SECRET"))
+"CLIENT ID:", os.environ.get("SPOTIPY_CLIENT_ID")
+"CLIENT SECRET:", os.environ.get("SPOTIPY_CLIENT_SECRET")
 
 # Get username from terminal
 username = sys.argv[1]
@@ -27,6 +27,22 @@ except:
 # Create our spotifyObject with permissions
 spotifyObject=spotipy.Spotify(auth=token)
 
+# Get current device
+devices = spotifyObject.devices()
+#print (json.dumps(devices,sort_keys =True, indent = 4))
+deviceID = devices['devices'][0]['id']
+deviceType = devices['devices'][0]['type']
+
+
+# User information
+user = spotifyObject.current_user()
+displayName= user['display_name']
+followers = user['followers']['total']
+
+# Get Playlist
+sp = spotipy.Spotify(auth=token)
+playlists = sp.user_playlists(user['id'])
+
 # Loop
 while True:
     # Main menu
@@ -37,6 +53,7 @@ while True:
     print()
     print("Operation      | Description")
     print("1 - Search     | Search an artist's tracks and play track")
+    print("2 - New        | List out New Release tracks and play")
     print()
     choice = input("Please choose one of the options: ")
 
@@ -95,3 +112,37 @@ while True:
             trackSelectionList.append(trackURIs[int(songSelection)])
             spotifyObject.start_playback(deviceID,None,trackSelectionList) #added
             webbrowser.open(trackArt[int(songSelection)])
+
+
+    # Get new releases
+    if choice == "2":
+        trackURIs =[]
+        trackArt = []
+        z = 0
+
+        newReleases = spotifyObject.new_releases(country=None, limit=20, offset=0)
+        newReleases = newReleases['albums']['items']
+        #print(newReleases)
+        #print (json.dumps(newReleases,sort_keys =True, indent = 4))
+        for item in newReleases:
+            songID = item['id']
+            songName = item['name']
+            songURI = item['uri']
+                #Extract tracks data
+            trackResults =spotifyObject.album_tracks(songID)
+            trackResults= trackResults['items']
+
+            for item in trackResults:
+                print(str(z)+": " + songName)
+                trackURIs.append(item['uri'])
+                z+=1
+            print()
+        #Listen to new released songs
+        while True:
+            songSelection = input("Enter a song number to see the album art and play the song(x to exit):")
+            if songSelection == "x":
+                break
+            trackSelectionList =[]
+            trackSelectionList.append(trackURIs[int(songSelection)])
+            spotifyObject.start_playback(deviceID,None,trackSelectionList) #added
+            #webbrowser.open(trackArt[int(songSelection)])
