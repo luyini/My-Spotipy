@@ -56,6 +56,7 @@ while True:
     print("2 - New        | List out New Release tracks and play")
     print("3 - Status     | Display current playing track and user info")
     print("4 - Playlist   | Display user's playlist")
+    print("5 - Exit       | Exit the application")
     print()
     choice = input("Please choose one of the options: ")
 
@@ -173,3 +174,6 @@ while True:
         for playlist in playlists['items']:
             print("+ " + playlist['name'])
             #print(json.dumps(playlists,sort_keys =True, indent = 4))
+    # End Program
+    if choice == "5":
+        break
