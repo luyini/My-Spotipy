@@ -55,6 +55,7 @@ while True:
     print("1 - Search     | Search an artist's tracks and play track")
     print("2 - New        | List out New Release tracks and play")
     print("3 - Status     | Display current playing track and user info")
+    print("4 - Playlist   | Display user's playlist")
     print()
     choice = input("Please choose one of the options: ")
 
@@ -162,3 +163,13 @@ while True:
             print(">>>> Your region: " + user['country'])
             print(">>>> Subscription Status: " + user['product'])
             print(">>>> Your Device Id: " + deviceID)
+
+
+    # Show user's playlist
+    if choice == "4":
+        print("----------------------------------")
+        print("Here is the list of your playlist:")
+        print("----------------------------------")
+        for playlist in playlists['items']:
+            print("+ " + playlist['name'])
+            #print(json.dumps(playlists,sort_keys =True, indent = 4))
