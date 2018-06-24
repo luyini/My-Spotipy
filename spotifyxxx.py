@@ -54,6 +54,7 @@ while True:
     print("Operation      | Description")
     print("1 - Search     | Search an artist's tracks and play track")
     print("2 - New        | List out New Release tracks and play")
+    print("3 - Status     | Display current playing track and user info")
     print()
     choice = input("Please choose one of the options: ")
 
@@ -146,3 +147,18 @@ while True:
             trackSelectionList.append(trackURIs[int(songSelection)])
             spotifyObject.start_playback(deviceID,None,trackSelectionList) #added
             #webbrowser.open(trackArt[int(songSelection)])
+
+    if choice == "3":
+        # Current track information
+        track = spotifyObject.current_user_playing_track()
+        #print(json.dumps(user,sort_keys =True, indent = 4))
+        artist = track['item']['artists'][0]['name']
+        track = track['item']['name']
+
+        if artist != "":
+            print(displayName +"'s current status")
+            print(">>>> Your Spotify is currently playing:  " + artist + " - " + track)
+            print(">>>> Playing device: " + deviceType )
+            print(">>>> Your region: " + user['country'])
+            print(">>>> Subscription Status: " + user['product'])
+            print(">>>> Your Device Id: " + deviceID)
