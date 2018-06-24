@@ -25,6 +25,13 @@ pip install spotipy==2.4.4
 pip3 install spotipy==2.4.4
 # note: you have to install spotipy using this spacific command, otherwise you would install an older 
 version of spotipy, in the older version, some functions are not working properly.
+
+
+pip install -r requirements.txt
+# or
+pip3 install -r requirements.txt
+# or
+pipenv install -r requirements.txt
 ```
 
 If using Pipenv, the following commands assume you are running them from within a `pipenv shell`.
