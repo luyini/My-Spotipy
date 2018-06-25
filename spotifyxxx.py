@@ -9,28 +9,6 @@ from dotenv import load_dotenv
 from os.path import join, dirname
 from json.decoder import JSONDecodeError
 
-
-
-# Device raw data for testing
-dump_json_device={
-            #"id": "dd8d61e3ebe68159a079e94832a93a62df866c81",
-            "is_active": True
-            #"is_private_session": False,
-            #"is_restricted": False,
-            #"name": "YINI\u2019s MacBook Air",
-            #"type": "Computer",
-            #"volume_percent": 100
-}
-
-# Artist raw data for testing
-dump_json_artists={
-            # "genres": "pop",
-            # "id": "2wY79sveU1sp5g7SokKOiI",
-            # "name": "Sam Smith",
-             "type": "artist",
-            # "uri": "spotify:artist:2wY79sveU1sp5g7SokKOiI"
-             }
-
 # Load envirnment
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -51,27 +29,27 @@ except:
 #Define Automated test for device
 def parse_response_devices(raw_response):
     devices = raw_response["devices"][0]
-    result = {
-        #"id": devices['id'],
-        "is_active": devices["is_active"]
-        #"is_private_session": devices["is_private_session"],
-        #"is_restricted": devices["is_restricted"],
-        #"name": devices["name"],
-        #"type": devices["type"],
-        #"volume_percent": devices["volume_percent"]
-    }
+    result = [{
+        "id": devices["id"],
+        "is_active": devices["is_active"],
+        "is_private_session": devices["is_private_session"],
+        "is_restricted": devices["is_restricted"],
+        "name": devices["name"],
+        "type": devices["type"],
+        "volume_percent": devices["volume_percent"]
+    }]
     return result
 
 #Define Automated test for artist
 def parse_response_artist(raw_response):
     artists = raw_response["artists"]["items"][0]
-    result = {
-    #    "genres": artists['genres'][0],
-    #    "id": artists['id'],
-    #    "name": artists['name'],
-        "type": artists["type"],
-    #    "uri": artists["uri"]
-    }
+    result = [{
+       "genres": artists["genres"][0],
+       "id": artists["id"],
+       "name": artists["name"],
+       "type": artists["type"],
+       "uri": artists["uri"]
+    }]
     return result
 # Create our spotifyObject with permissions
 spotifyObject=spotipy.Spotify(auth=token)
@@ -83,7 +61,7 @@ deviceID = devices['devices'][0]['id']
 deviceType = devices['devices'][0]['type']
 
 # Test device output:
-parsed_response_devices = parse_response_devices(devices)
+#parsed_response_devices = parse_response_devices(devices)
 #assert parsed_response_devices == dump_json_device
 
 
@@ -123,9 +101,6 @@ while True:
         searchResults = spotifyObject.search(searchQuery,1,0,"artist")
         #print (json.dumps(searchResults,sort_keys =True, indent = 4))
 
-        # Test artist ouput
-        parse_response_artist = parse_response_artist(searchResults)
-        #assert parse_response_artist == dump_json_artists
         # Artist Details
         artist = searchResults['artists']['items'][0]
         print(">>>> Artist Name:" + artist['name'])
@@ -210,16 +185,19 @@ while True:
         # Current track information
         track = spotifyObject.current_user_playing_track()
         #print(json.dumps(user,sort_keys =True, indent = 4))
-        artist = track['item']['artists'][0]['name']
-        track = track['item']['name']
+        if track:
+            artist = track['item']['artists'][0]['name']
+            track = track['item']['name']
 
-        if artist != "":
-            print(displayName +"'s current status")
-            print(">>>> Your Spotify is currently playing:  " + artist + " - " + track)
-            print(">>>> Playing device: " + deviceType )
-            print(">>>> Your region: " + user['country'])
-            print(">>>> Subscription Status: " + user['product'])
-            print(">>>> Your Device Id: " + deviceID)
+            if artist != "":
+                print(displayName +"'s current status")
+                print(">>>> Your Spotify is currently playing:  " + artist + " - " + track)
+                print(">>>> Playing device: " + deviceType )
+                print(">>>> Your region: " + user['country'])
+                print(">>>> Subscription Status: " + user['product'])
+                print(">>>> Your Device Id: " + deviceID)
+        else:
+            print ("Your are not currently playing any music")
 
 
     # Show user's playlist
