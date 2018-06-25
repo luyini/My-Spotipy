@@ -2,3 +2,4 @@ python-dotenv
 spotipy
 json
 pdb
+six
