@@ -97,6 +97,7 @@ while True:
         #print (json.dumps(searchResults,sort_keys =True, indent = 4))
         results = searchResults['artists']['total']
         if results == 0:
+            print("--------------------------------------------------")
             print ("Invalid Input! Please enter a valid artist name!(eg.Taylor Swift) ")
             print("--------------------------------------------------")
             break
