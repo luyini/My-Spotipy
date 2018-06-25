@@ -8,7 +8,7 @@ Create a [Spotify Client application](https://developer.spotify.com/dashboard/ap
 
 Install desktop [Spotify Client terminal](https://www.spotify.com/us/download/other/), direct to profile page after installation. When you're on your account and find your account shairng link, click `more` and then `share` and then `copy profile link`, the characters after /user will be the `user_id` (eg.xxxxxxxxxxxxxx). Please leave your client terminal open when you operate the application.
 
-Important Note: You have to a spotify premium subscriber in order to use the spotify API. 
+#### Important Note: You have to a spotify premium subscriber in order to use the spotify API. 
 
 
 (sample link:https://open.spotify.com/user/xxxxxxxxxxxxxx)
@@ -53,6 +53,6 @@ python3 spotifyxxx.py user_id
 # or
 python spotifyxxx.py user_id
 ```
-Important Note: When you enter the command line above, there would be a pop up window ask you for perimission to 
+#### Important Note: When you enter the command line above, there would be a pop up window ask you for perimission to 
 access your spotify account, after you click `Okay`, copy the redirect url at the top of you browser and paste it 
 to your command line in order to properly start the application.
