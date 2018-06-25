@@ -78,7 +78,7 @@ while True:
     print(">>>> You have " + str(followers) + " followers <<<<")
     print()
     print("Operation      | Description")
-    print("1 - Search     | Search an artist's tracks and play track")
+    print("1 - Search     | Search an artist and play a track")
     print("2 - New        | List out New Release tracks and play")
     print("3 - Status     | Display current playing track and user info")
     print("4 - Playlist   | Display user's playlist")
