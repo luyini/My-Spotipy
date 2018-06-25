@@ -26,15 +26,18 @@ pip3 install -r requirements.txt
 # or
 pipenv install -r requirements.txt
 ```
-Latest version Spotipy installation
+Latest version Spotipy installation(Mac)
 ```
-pip install spotipy==2.4.4
-# or 
-pip3 install spotipy==2.4.4
-# note: you have to install spotipy using this spacific command, otherwise you would install an older 
-version of spotipy, in the older version, some functions are not working properly.
+pip install git+https://github.com/plamere/spotipy.git --upgrade
+# or
+pip3 install git+https://github.com/plamere/spotipy.git --upgrade
+# or
+pipenv install git+https://github.com/plamere/spotipy.git --upgrade
 ```
-
+Latest version Spotipy installation(Windows)
+```
+Find your python site-packages\spotipy and replace the client.py in the site-packages and replace it with the client.py in My-Spotipy-master folder.
+```
 
 If using Pipenv, the following commands assume you are running them from within a `pipenv shell`.
 
