@@ -60,11 +60,6 @@ devices = spotifyObject.devices()
 deviceID = devices['devices'][0]['id']
 deviceType = devices['devices'][0]['type']
 
-# Test device output:
-#parsed_response_devices = parse_response_devices(devices)
-#assert parsed_response_devices == dump_json_device
-
-
 # User information
 user = spotifyObject.current_user()
 displayName= user['display_name']
@@ -100,9 +95,14 @@ while True:
         # Get search results
         searchResults = spotifyObject.search(searchQuery,1,0,"artist")
         #print (json.dumps(searchResults,sort_keys =True, indent = 4))
-
+        results = searchResults['artists']['total']
+        if results == 0:
+            print ("Invalid Input! Please enter a valid artist name!(eg.Taylor Swift) ")
+            print("--------------------------------------------------")
+            break
+        else:
         # Artist Details
-        artist = searchResults['artists']['items'][0]
+            artist = searchResults['artists']['items'][0]
         print(">>>> Artist Name:" + artist['name'])
         print(">>>> This artist has " + str(artist['followers']['total']) + " followers")
         print(">>>> Genres: " + artist['genres'][0])
@@ -211,3 +211,5 @@ while True:
     # End Program
     if choice == "5":
         break
+    if choice != "1"or"2"or"3"or"4"or"5":
+        print(">>>>>>Please enter a valid choice!!!!!!<<<<<<")
