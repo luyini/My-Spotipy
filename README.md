@@ -6,7 +6,7 @@ Spotify API client application for users to search for artists, play tracks and 
 
 Create a [Spotify Client application](https://developer.spotify.com/dashboard/applications/), and note its Client Id and Client Secret, and store them in environment variables called `SPOTIPY_CLIENT_ID` and `SPOTIPY_CLIENT_SECRET`.
 
-Install desktop [Spotify Client terminal](https://www.spotify.com/us/download/other/), direct to profile page after installation. When you're on your account and find your account shairng link, click `more` and then `share` and then `copy profile link`, the characters after /user will be the `user_id` (eg.xxxxxxxxxxxxxx).
+Install desktop [Spotify Client terminal](https://www.spotify.com/us/download/other/), direct to profile page after installation. When you're on your account and find your account shairng link, click `more` and then `share` and then `copy profile link`, the characters after /user will be the `user_id` (eg.xxxxxxxxxxxxxx). Please leave your client terminal open when you operate the application.
 
 
 (sample link:https://open.spotify.com/user/xxxxxxxxxxxxxx)
